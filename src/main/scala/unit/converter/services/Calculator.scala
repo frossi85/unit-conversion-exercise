@@ -1,4 +1,4 @@
-package example.models
+package unit.converter.services
 
 import scala.util.parsing.combinator.PackratParsers
 import scala.util.parsing.combinator.lexical.StdLexical
@@ -29,3 +29,14 @@ class Calculator extends StdTokenParsers with PackratParsers {
     case NoSuccess(msg, remain) => throw new RuntimeException(s"Parse error $msg at ${remain.pos}")
   }
 }
+
+
+
+case class UnitConversion(
+                           name: String,
+                           symbol: String,
+                           quantity: String,
+                           siSymbol: String,
+                           siFactorConversion: Double
+                         )
+

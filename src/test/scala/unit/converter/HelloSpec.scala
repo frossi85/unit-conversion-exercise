@@ -1,4 +1,4 @@
-package example
+package unit.converter
 
 import org.scalatest._
 
