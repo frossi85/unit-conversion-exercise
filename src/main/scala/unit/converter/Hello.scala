@@ -6,7 +6,7 @@ object Hello extends Greeting with App {
   println(greeting)
 
   val calc = new Calculator()
-  val res = calc.parse("(2+ 4)* 3")
+  val res = calc.parse("(2 / 4)* 3")
 
   println(res)
 

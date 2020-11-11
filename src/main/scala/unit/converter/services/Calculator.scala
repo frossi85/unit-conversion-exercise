@@ -11,17 +11,13 @@ class Calculator extends StdTokenParsers with PackratParsers {
 
   lexical.delimiters ++= List("(", ")", "+", "-", "*", "/")
 
-  lazy val expr: PackratParser[Int] = addSub
+  lazy val expr: PackratParser[Double] = mulDiv
 
-  lazy val addSub: PackratParser[Int] = mulDiv * (
-    "+" ^^^ { (left: Int, right: Int) => left + right }
-    | "-" ^^^ { (left: Int, right: Int) => left - right } )
+  lazy val mulDiv: PackratParser[Double] = term * (
+    "*" ^^^ { (left: Double, right: Double) => left * right }
+    | "/" ^^^ { (left: Double, right: Double) => left / right } )
 
-  lazy val mulDiv: PackratParser[Int] = term * (
-    "*" ^^^ { (left: Int, right: Int) => left * right }
-    | "/" ^^^ { (left: Int, right: Int) => left / right } )
-
-  lazy val term: PackratParser[Int] = "(" ~> expr <~ ")" | numericLit ^^ (_.toInt)
+  lazy val term: PackratParser[Double] = "(" ~> expr <~ ")" | numericLit ^^ (_.toDouble)
 
   def parse(str: String) = expr(new PackratReader(new lexical.Scanner(str))) match {
     case Success(result, remain) if remain.atEnd => result

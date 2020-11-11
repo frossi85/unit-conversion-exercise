@@ -3,14 +3,14 @@ package unit.converter.services
 import org.scalatest._
 
 class ConverterSpec extends FlatSpec with Matchers {
-  "Converter.convertToFactorExpression" should "replace units with its SI Conversion amount" in {
+  "convertToFactorExpression" should "replace units with its SI Conversion amount" in {
 
     Converter.convertToFactorExpression(
       "2/(min*4+minute)*º"
     ) shouldEqual "2/(60.0*4+60.0)*0.005555555555555556"
   }
 
-  "Converter.replaceWithSIUnits" should "replace raw units names with SI counterpart" in {
+  "replaceWithSIUnits" should "replace raw units names with SI counterpart" in {
 
     Converter.replaceWithSIUnits("2/(min*4+minute)*º") shouldEqual "2/(s*4+s)*rad"
 
