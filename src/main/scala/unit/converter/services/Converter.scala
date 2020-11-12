@@ -11,9 +11,6 @@ class Converter {
     val withSISymbols = replaceWithSIUnits(expresion)
     val factorExpression = convertToFactorExpression(expresion)
 
-    println("HEREEE")
-    println(factorExpression)
-
     ConversionResult(
       withSISymbols,
       calculator.parse(factorExpression)
