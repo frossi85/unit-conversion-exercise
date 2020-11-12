@@ -1,5 +1,26 @@
 package unit.converter.services
 
+import unit.converter.services.Converter.{convertToFactorExpression, replaceWithSIUnits}
+
+case class ConversionResult(unitName: String, multiplicationFactor: Double)
+
+class Converter {
+  val calculator = new Calculator()
+
+  def toSI(expresion: String): ConversionResult = {
+    val withSISymbols = replaceWithSIUnits(expresion)
+    val factorExpression = convertToFactorExpression(expresion)
+
+    println("HEREEE")
+    println(factorExpression)
+
+    ConversionResult(
+      withSISymbols,
+      calculator.parse(factorExpression)
+    )
+  }
+}
+
 object Converter {
   private val unitsConversion = List(
     UnitConversion("minute", "min", "time", "s", 60),

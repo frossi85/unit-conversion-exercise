@@ -32,4 +32,11 @@ class ConverterSpec extends FlatSpec with Matchers {
 
     Converter.replaceWithSIUnits("(degree/(minute*hectare))") shouldEqual "(rad/(s*m^2))"
   }
+
+  "toSI" should "return the unit name and mutiplication factor" in {
+    val converter = new Converter()
+
+    converter
+      .toSI("(degree/minute)") shouldEqual ConversionResult("(rad/s)", 9.25925925925926E-5)
+  }
 }

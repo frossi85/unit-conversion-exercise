@@ -3,56 +3,18 @@ package unit.converter
 import unit.converter.services.{Calculator, Converter}
 
 object Hello extends Greeting with App {
-  println(greeting)
+
 
   val calc = new Calculator()
   val res = calc.parse("(2 / 4)* 3")
 
-  println(res)
+  val double: Double = 0.005555555555555556/60.0
 
-  println(
-    Converter.convertToFactorExpression("2/(min*4+minute)*º")
-  )
+  val calculator = new Calculator()
 
-  println(
-    Converter.replaceWithSIUnits("2/(min*4+minute)*º")
-  )
+  val res2: Double = calculator.parse("0.005555555555555556/60.0")
 
-  println(
-    Converter.replaceWithSIUnits("2/(min*4+minute ) *º")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("2/(min*4+º)")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("2/(min*4+º)*1")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("2/(º*4+º)*1")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("degree")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("degree/minute")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("(degree/(minute*hectare))")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("ha*°")
-  )
-
-  println(
-    Converter.replaceWithSIUnits("ha")
-  )
+  println(res2)
 }
 
 trait Greeting {

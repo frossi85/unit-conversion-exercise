@@ -15,5 +15,7 @@ class CalculatorSpec extends FlatSpec with Matchers {
     calculator.parse("5*(6/2)") shouldEqual 15
 
     calculator.parse("((2*3)/1)*(3*2)") shouldEqual 36
+
+    calculator.parse("0.005555555555555556/60.0") shouldEqual 0.005555555555555556/60.0
   }
 }
