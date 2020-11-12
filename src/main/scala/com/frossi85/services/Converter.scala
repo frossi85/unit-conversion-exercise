@@ -1,6 +1,6 @@
-package unit.converter.services
+package com.frossi85.services
 
-import unit.converter.services.Converter.{convertToFactorExpression, replaceWithSIUnits}
+import Converter.{convertToFactorExpression, replaceWithSIUnits}
 
 case class ConversionResult(unitName: String, multiplicationFactor: Double)
 

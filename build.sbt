@@ -1,9 +1,11 @@
 import Dependencies._
 
-ThisBuild / scalaVersion     := "2.12.10"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / scalaVersion     := "2.13.3"
+ThisBuild / version          := "0.1.0"
+ThisBuild / organization     := "com.frossi85"
+ThisBuild / organizationName := "frossi85"
+
+exportJars := true
 
 val AkkaVersion = "2.6.8"
 val AkkaHttpVersion = "10.2.1"
@@ -19,6 +21,9 @@ val dependencies = Seq(
 
 lazy val root = (project in file("."))
   .settings(
-    name := "Desktop",
-    libraryDependencies ++= dependencies
+    name := "interview-project",
+    libraryDependencies ++= dependencies,
+    mainClass in assembly := Some("com.frossi85.UnitConverterApplication"),
+    assemblyJarName in assembly := "app.jar",
   )
+

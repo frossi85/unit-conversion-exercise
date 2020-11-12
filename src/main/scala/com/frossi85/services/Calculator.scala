@@ -1,4 +1,4 @@
-package unit.converter.services
+package com.frossi85.services
 
 import scala.util.parsing.combinator.{RegexParsers}
 

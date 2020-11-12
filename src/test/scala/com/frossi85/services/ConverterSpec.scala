@@ -1,4 +1,4 @@
-package unit.converter.services
+package com.frossi85.services
 
 import org.scalatest._
 

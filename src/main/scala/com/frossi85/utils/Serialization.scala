@@ -1,6 +1,6 @@
-package unit.converter.utils
+package com.frossi85.utils
 
-import org.json4s.{DefaultFormats, Formats}
+import org.json4s.DefaultFormats
 import org.json4s.native.JsonMethods._
 import org.json4s.native.Serialization._
 
