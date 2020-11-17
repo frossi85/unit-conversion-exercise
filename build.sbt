@@ -14,7 +14,6 @@ val dependencies = Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
   "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
   "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
-  "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
   "org.json4s" %% "json4s-native" % "3.6.10",
   scalaTest % Test
 )

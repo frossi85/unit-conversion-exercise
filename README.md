@@ -8,7 +8,7 @@ Requirements:
 To test this service you should follow these steps:
 
 1. Building the docker image: `docker build --tag interview-project .`
-2. Run the docker image in a container: `docker run -p8080:8080 --name conversion-service interview-project:latest`
+2. Run the docker image in a container: `docker run -i -p8080:8080 --name conversion-service interview-project:latest`
 3. Stop/Remove the running the container : `docker rm --force conversion-service`
 
 ## Running the tests
