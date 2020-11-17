@@ -15,7 +15,7 @@ To test this service you should follow these steps:
 
 Requirements:
 - sbt is installed
-
+~~~~
 1. Run: `sbt compile test`
 
 ## Design decisions
