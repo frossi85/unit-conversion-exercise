@@ -1,5 +1,6 @@
 package com.frossi85.utils
 
+import akka.http.scaladsl.coding.{Decoder, Encoder}
 import org.json4s.DefaultFormats
 import org.json4s.native.JsonMethods._
 import org.json4s.native.Serialization._
