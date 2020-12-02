@@ -50,10 +50,13 @@ class ConverterSpec extends FlatSpec with Matchers {
     val converter = new Converter()
 
     converter
-      .toSI("degree") shouldEqual ConversionResult("rad", 0.017453292519943295)
+      .toSI("degree") shouldEqual ConversionResult("rad", 0.017453292519943)
 
     converter
-      .toSI("(degree/minute)") shouldEqual ConversionResult("(rad/s)", 2.908882086657216E-4)
+      .toSI("(degree/minute)") shouldEqual ConversionResult("(rad/s)", .00029088820866572)
+
+    converter
+      .toSI("(degree/(minute*hectare))") shouldEqual ConversionResult("(rad/(s*m^2))", 2.9088820866572e-08)
   }
 
   "toSI" should "throw a ValidationException on invalid expression" in {

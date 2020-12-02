@@ -1,6 +1,7 @@
 package com.frossi85.services
 
 import Converter.{convertToFactorExpression, isValid, replaceWithSIUnits}
+import com.frossi85.utils.MathUtils
 
 case class ConversionResult(unitName: String, multiplicationFactor: Double)
 
@@ -17,12 +18,10 @@ class Converter {
 
     ConversionResult(
       withSISymbols,
-      calculator.parse(factorExpression)
+      MathUtils.truncateAt(calculator.parse(factorExpression), 14)
     )
   }
 }
-
-case class ValidationException(message: String) extends Exception(message)
 
 object Converter {
   private val unitsConversionMap = Map(
@@ -33,24 +32,12 @@ object Converter {
     "arcminute" -> UnitConversion("arcminute", "'", "unitless/plane angle", "rad", Math.PI / 10800),
     "arcsecond" -> UnitConversion("arcsecond", "''", "unitless/plane angle", "rad", Math.PI / 648000),
     "hectare" -> UnitConversion("hectare", "ha", "area", "m^2", 10000),
-    "hectare" -> UnitConversion("hectare", "L", "volume", "m^3", 0.001),
+    "litre" -> UnitConversion("litre", "L", "volume", "m^3", 0.001),
     "tonne" -> UnitConversion("tonne", "t", "mass", "kg", 1000)
   )
 
-  private val unitsConversion = List(
-    UnitConversion("minute", "min", "time", "s", 60),
-    UnitConversion("hour", "h", "time", "s", 3600),
-    UnitConversion("day", "d", "time", "s", 86400),
-    UnitConversion("degree", "º", "unitless/plane angle", "rad", Math.PI / 180),
-    UnitConversion("arcminute", "'", "unitless/plane angle", "rad", Math.PI / 10800),
-    UnitConversion("arcsecond", "''", "unitless/plane angle", "rad", Math.PI / 648000),
-    UnitConversion("hectare", "ha", "area", "m^2", 10000),
-    UnitConversion("litre", "L", "volume", "m^3", 0.001),
-    UnitConversion("tonne", "t", "mass", "kg", 1000)
-  )
-
   def convertToFactorExpression(expression: String): String = {
-    unitsConversion
+    unitsConversionMap.values
       .foldLeft(expression)((newExpression: String, conversion: UnitConversion) =>
         newExpression
           .replaceAll(
@@ -72,7 +59,7 @@ object Converter {
   }
 
   def replaceWithSIUnits(expression: String): String = {
-    unitsConversion
+    unitsConversionMap.values
       .foldLeft(expression)((newExpression: String, conversion: UnitConversion) =>
         newExpression
           .replaceAll(
