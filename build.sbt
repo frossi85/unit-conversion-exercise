@@ -16,6 +16,10 @@ val dependencies = Seq(
   "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
   "com.typesafe.akka" %% "akka-http-spray-json" % AkkaHttpVersion,
   "org.json4s" %% "json4s-native" % "3.6.10",
+  "ch.qos.logback"    % "logback-classic"           % "1.2.3",
+
+  "com.typesafe.akka" %% "akka-http-testkit"        % AkkaHttpVersion % Test,
+  "com.typesafe.akka" %% "akka-actor-testkit-typed" % AkkaVersion     % Test,
   scalaTest % Test
 )
 
