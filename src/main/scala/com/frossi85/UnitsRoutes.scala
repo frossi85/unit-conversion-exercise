@@ -3,14 +3,13 @@ package com.frossi85
 import akka.actor.ActorSystem
 import akka.http.scaladsl.marshalling.{Marshaller, ToEntityMarshaller}
 import akka.http.scaladsl.model.ContentTypes._
-import akka.http.scaladsl.model.StatusCodes
+import akka.http.scaladsl.model.{MediaTypes, StatusCodes}
 import akka.http.scaladsl.model.headers.`Content-Type`
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.frossi85.services.{ConversionResult, Converter}
 import com.frossi85.utils.Serialization
-import akka.http.scaladsl.model.{ContentTypes, MediaTypes}
-import scala.List
+import scala.util.{Failure, Success, Try}
 
 class UnitsRoutes(converter: Converter)(implicit val system: ActorSystem) extends Serialization {
   implicit val marshaller: ToEntityMarshaller[ConversionResult] =
@@ -21,11 +20,18 @@ class UnitsRoutes(converter: Converter)(implicit val system: ActorSystem) extend
       path("si") {
         get {
           parameters(Symbol("units").as[String]) { units =>
-            complete(
-              StatusCodes.OK,
-              List(`Content-Type`(`application/json`)),
-              converter.toSI(units)
-            )
+            Try(converter.toSI(units)) match {
+              case Success(value) => complete(
+                StatusCodes.OK,
+                List(`Content-Type`(`application/json`)),
+                value
+              )
+              case Failure(_) => complete(
+                StatusCodes.BadRequest,
+                List(`Content-Type`(`application/json`)),
+                "Invalid units parameter"
+              )
+            }
           }
         }
       }
